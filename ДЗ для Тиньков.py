@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
 
 
 import re
@@ -11,14 +7,12 @@ import random
 import numpy as np
 
 
-# In[2]:
-
 
 import codecs
 
 word = []
 
-with codecs.open("text.txt","r","utf-8") as text: # парсим слова
+with codecs.open("text.txt","r","utf-8") as text: #проводим токенизацию
     for line in text:
         t = re.split('[^а-я]', line.lower().strip())
         while "" in t:
@@ -27,24 +21,24 @@ with codecs.open("text.txt","r","utf-8") as text: # парсим слова
             word.append(t[i])
 
 
-# In[4]:
+
 
 
 length = int(input())
 
 ngrams = {}
 
-for i in range(len(word)-n):
+for i in range(len(word)-n): #создаём n-граммы
     gram = " ".join(word[i:i+n])
     if gram not in ngrams.keys():
         ngrams[gram] = []
     ngrams[gram].append(word[i+n])
 
 
-# In[11]:
 
 
-sentence = " ".join(word[0:n])
+
+sentence = " ".join(word[0:n]) # Делаем генерацию
 anw = sentence
 
 for i in range(200):
@@ -61,19 +55,8 @@ for i in range(200):
         
 
 
-# In[12]:
-
-
 print(anw)
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
